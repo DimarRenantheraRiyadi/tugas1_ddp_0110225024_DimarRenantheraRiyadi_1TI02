@@ -1,0 +1,114 @@
+{% extends 'myprofile/base.html' %}
+
+{% block title %}About Me - Riwayat Pendidikan & Organisasi{% endblock %}
+
+{% block content %}
+<h1 class="section-title">About Me</h1>
+<p class="lead mb-5">Berikut adalah riwayat pendidikan dan pengalaman organisasi yang saya jalani.</p>
+
+<!-- Riwayat Pendidikan -->
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h3 class="mb-0"><i class="bi bi-mortarboard"></i> Riwayat Pendidikan</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tahun</th>
+                        <th>Instansi Pendidikan</th>
+                        <th>Jurusan/Program</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for edu in pendidikan %}
+                    <tr>
+                        <td><span class="badge bg-info">{{ edu.tahun }}</span></td>
+                        <td><strong>{{ edu.instansi }}</strong></td>
+                        <td>{{ edu.jurusan }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Pengalaman Organisasi -->
+<div class="card mt-4">
+    <div class="card-header bg-success text-white">
+        <h3 class="mb-0"><i class="bi bi-people"></i> Pengalaman Organisasi</h3>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tahun</th>
+                        <th>Nama Organisasi</th>
+                        <th>Jabatan</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for org in organisasi %}
+                    <tr>
+                        <td><span class="badge bg-warning">{{ org.tahun }}</span></td>
+                        <td><strong>{{ org.nama }}</strong></td>
+                        <td>{{ org.jabatan }}</td>
+                        <td>
+                            <small class="text-muted">
+                                {% if org.nama == 'OSIS SMA Negeri 1 Jakarta' %}
+                                Mengelola website sekolah dan sistem informasi
+                                {% elif org.nama == 'Himpunan Mahasiswa Teknik Informatika' %}
+                                Mengembangkan website himpunan dan aplikasi internal
+                                {% else %}
+                                Membahas dan mengusulkan kebijakan akademik
+                                {% endif %}
+                            </small>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Info -->
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-award"></i> Prestasi</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Juara 1 Lomba Web Design Tingkat Nasional (2023)</li>
+                    <li class="list-group-item">Finalis Competitive Programming Contest (2024)</li>
+                    <li class="list-group-item">Sertifikasi Python Developer (2023)</li>
+                    <li class="list-group-item">Beasiswa Prestasi Akademik (2023-2024)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0"><i class="bi bi-tools"></i> Keahlian Teknis</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Web Development (Django, Flask)</li>
+                    <li class="list-group-item">Frontend (HTML, CSS, JavaScript, Bootstrap)</li>
+                    <li class="list-group-item">Database Management (MySQL, PostgreSQL)</li>
+                    <li class="list-group-item">Version Control (Git, GitHub)</li>
+                    <li class="list-group-item">UI/UX Design (Figma, Adobe XD)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

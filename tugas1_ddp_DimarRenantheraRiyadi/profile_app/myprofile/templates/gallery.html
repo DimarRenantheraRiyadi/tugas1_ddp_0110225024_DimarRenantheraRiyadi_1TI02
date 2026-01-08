@@ -1,0 +1,37 @@
+{% extends 'myprofile/base.html' %}
+{% load static %}
+
+{% block title %}Gallery - Kegiatan & Aktivitas{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Gallery Kegiatan</h1>
+<p class="lead mb-5">Koleksi foto dari berbagai kegiatan dan aktivitas yang pernah saya ikuti.</p>
+
+<div class="row">
+    {% for image in images %}
+    <div class="col-md-4 col-sm-6 mb-4">
+        <div class="card h-100">
+            <img src="/media/gallery/{{ image.file_name }}" 
+                 class="card-img-top gallery-img" 
+                 alt="{{ image.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ image.title }}</h5>
+                <p class="card-text">{{ image.desc }}</p>
+                <p class="text-muted"><small><i class="bi bi-calendar"></i> {{ forloop.counter|add:"2020" }}/{{ forloop.counter|add:"3" }}/{{ forloop.counter|add:"10" }}</small></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="alert alert-info mt-5">
+    <h4><i class="bi bi-info-circle"></i> Catatan:</h4>
+    <p>Gambar-gambar di atas menggunakan placeholder. Untuk implementasi nyata, Anda perlu:</p>
+    <ol>
+        <li>Menyimpan gambar di folder <code>media/gallery/</code></li>
+        <li>Mengganti URL gambar dengan <code>{{ MEDIA_URL }}gallery/nama_file.jpg</code></li>
+        <li>Upload gambar Anda sendiri melalui admin Django atau langsung ke folder media</li>
+    </ol>
+    <p>Contoh untuk gambar pertama: <code>&lt;img src="/media/gallery/kampus.jpg"&gt;</code></p>
+</div>
+{% endblock %}
